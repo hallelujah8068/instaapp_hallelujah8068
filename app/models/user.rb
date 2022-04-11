@@ -34,6 +34,10 @@ class User < ApplicationRecord
     profile || build_profile
   end
 
+  def has_written?(article) #自分の記事かどうか判断
+    articles.exists?(id: article.id)
+  end
+
   def avatar_image
     if profile&.avatar&.attached?
       profile.avatar
