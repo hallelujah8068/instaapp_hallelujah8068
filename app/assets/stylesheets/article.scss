@@ -1,0 +1,76 @@
+.article {
+    margin-top: 40px;
+
+    &_nav {
+        display: flex;
+        margin-bottom: 15px;;
+
+        &_text {
+            margin-left: 10px;
+
+            &_name {
+                font-size: 14px;
+            }
+        
+            &_time {
+                font-size: 12px;
+            }
+        }
+
+        &_avatar {
+            height: 38px;
+            width: 38px;
+            border-radius: 50%;
+        }
+    }
+    &_content {
+        display: flex;
+        overflow: auto;
+        scroll-snap-type: x;
+        min-width: 100%;
+
+        &_image {
+            scroll-snap-align: start;
+            display: block;
+            max-height: 450px;
+            max-width: 100%;
+            flex: none;
+            object-fit: cover;
+            min-width: 100%;
+        }
+    }
+
+    &_action {
+        margin-top: 12px;
+        margin-bottom: 8px;
+        display: flex;
+    }
+
+    &_icon {
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+    }
+
+    &_liked {
+        font-size: 12px;
+    }
+
+    &_text {
+        display: flex;
+    }
+
+    &_name {
+        font-size: 14px;
+        margin-right: 5px;
+    }
+
+}
+
+.article_user_name {
+    font-weight: bold;
+}
+
+.article_text_content {
+    margin-left: 10px;
+}
