@@ -40,6 +40,10 @@ class User < ApplicationRecord
     articles.exists?(id: article.id)
   end
 
+  def has_liked?(article) #いいねしてるかしてないか判断
+    likes.exists?(article_id: article.id)
+  end
+
   def avatar_image
     if profile&.avatar&.attached?
       profile.avatar
