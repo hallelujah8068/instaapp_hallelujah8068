@@ -1,28 +1,22 @@
-.profile.container
+.profile.container#account-show{data: {account_id: @user.id}}
   .header
-    .profile_back
-      = link_to root_path do
-        = image_tag 'back.svg', class: 'header_left'
+    = link_to root_path do
+      = image_tag 'back.svg', class: 'header_left'
+    - if user_signed_in?
+      フォロー
     .profile_name
-      %p= current_user.name
+      %p.page_title= @user.name
   .profile_avatar
-    = image_tag current_user.avatar_image, class: 'profile_image'
-  .profile_form
-    = form_with(model: @profile, url: profile_path, method: 'PUT', local: true) do |f|
-      %div
-        = f.file_field :avatar, class: 'avatar-select'
-      = f.submit '保存', class: 'avatar-btn'
+    = image_tag @user.avatar_image, class: 'profile_image'
   .profile_info
     .profile_info_posts
-      %p.profile_info_num= current_user.articles.count
-      %p.profile_info_text Posts
+      %p.profile_info_num= @user.articles.count
+      %p.profile_info_text 投稿
     .profile_info_followers
-      %p.profile_info_num 44
-      %p.profile_info_text Followers
+      %p.profile_info_text フォロワー
     .profile_info_following
-      %p.profile_info_num 44
-      %p.profile_info_text Following
-  - current_user.articles.each do |article|
+      %p.profile_info_text フォロー
+  - @user.articles.each do |article|
     .container
       .article
         .article_nav

@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :articles do
     resource :like, only: [:show, :create, :destroy]
   end
+
+  resources :accounts, only: [:show, :create]
 end
