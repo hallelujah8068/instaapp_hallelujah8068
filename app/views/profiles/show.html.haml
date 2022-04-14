@@ -1,7 +1,8 @@
 .profile.container
-  .profile_header
+  .header
     .profile_back
-      = image_tag 'back.svg', class: 'profile_back_image'
+      = link_to root_path do
+        = image_tag 'back.svg', class: 'header_left'
     .profile_name
       %p= current_user.name
   .profile_avatar
@@ -13,7 +14,7 @@
       = f.submit '保存', class: 'avatar-btn'
   .profile_info
     .profile_info_posts
-      %p.profile_info_num 44
+      %p.profile_info_num= current_user.articles.count
       %p.profile_info_text Posts
     .profile_info_followers
       %p.profile_info_num 44
@@ -21,13 +22,35 @@
     .profile_info_following
       %p.profile_info_num 44
       %p.profile_info_text Following
-  .profile_contents
-    .photos
-      %ul.album
-        %li
-          = image_tag 'photo1.png'
-          = image_tag 'photo2.png'
-          = image_tag 'photo3.png'
-          = image_tag 'photo4.png'
-          = image_tag 'photo5.png'
-          = image_tag 'photo6.png' 
+  - current_user.articles.each do |article|
+    .container
+      .article
+        .article_nav
+          = link_to account_path(article.user) do
+            = image_tag article.user.avatar_image, class: 'article_nav_avatar'
+          .article_nav_text
+            .article_nav_text_name
+              %p= article.user.name
+            .article_nav_text_time
+              %p= article.display_created_at
+        .article_content
+          - article.images.each do |images| 
+            = image_tag images, class: 'article_content_image'
+        .article_action
+          - if user_signed_in?
+            .article_heart.active-heart.hidden{:id => article.id}
+              = image_tag 'heart-active.png', class: 'article_icon'
+            .article_heart.inactive-heart.hidden{:id => article.id}
+              = image_tag 'heart.png', class: 'article_icon'
+            - if current_user.has_written?(article)
+              = link_to article_path(article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか？' } do
+                = image_tag 'trash.png', class: 'article_icon'
+          = image_tag 'comment.png', class: 'article_icon'
+          = image_tag 'share.png', class: 'article_icon share-twitter'
+        .article_text
+          .article_user_name
+            %p= article.user.name 
+          .article_text_content
+            %p= article.content
+
+= javascript_pack_tag 'article'
