@@ -6,6 +6,7 @@
 @import 'article';
 @import 'post';
 @import 'header';
+@import 'comment';
 
 html {
     word-spacing: 1px;
@@ -66,6 +67,10 @@ body {
 
 .hidden {
     display: none;
+}
+
+.page_title {
+    font-size: 16px;
 }
 
 
