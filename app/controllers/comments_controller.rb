@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:create]
 
     def index
-        @comments = Comment.all
-
         @article = Article.find(params[:article_id])
-        @comment = @article.comments.build
+        @comments = @article.comments
+
+        @comment = Comment.new
     end
 
     def create
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
         @comment.user = current_user
 
         if @comment.save
-            redirect_to action: :index, notice:'コメントを追加しました!'
+            redirect_to article_comments_path, notice:'コメントを追加しました!'
         else
             flash.now[:error] = 'コメントを追加できませんでした'
             render :index
