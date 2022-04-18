@@ -15,4 +15,8 @@
 #  index_comments_on_user_id     (user_id)
 #
 class Comment < ApplicationRecord
+    belongs_to :user
+    belongs_to :article
+
+    validates :content, presence: true
 end
