@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
         @article = Article.find(params[:article_id])
         @comments = @article.comments
 
-        @comment = Comment.new
+        @comment = @article.comments.build
+        @comment.user = current_user
     end
 
     def create
@@ -23,6 +24,6 @@ class CommentsController < ApplicationController
 
     private
     def comment_params
-        params.require(:comment).permit(:content)
+        params.require(:comment).permit(:content, :article_id, :user_id).merge(user_id: current_user.id, article_id: params[:article_id])
     end
 end
