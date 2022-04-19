@@ -6,17 +6,9 @@
       %p.page_title コメント
   - @comment.errors.full_messages.each do |message|
     %li= message
-  .comment
+  .comment#comment-index{data: {article_id: @article.id}}
     - if @comments.present?
-      -  @comments.each do |comment|
-        .comment_content
-          .comment_content_avatar
-            = image_tag comment.user.avatar_image, class: 'comment_content_avatar_image'
-          .comment_content_texts
-            .comment_content_user-name
-              %p= comment.user.name
-            .comment_content_text
-              %p= comment.content
+      .comments-container
   - if user_signed_in?
     = form_with(model: [@article, @comment], local: true) do |f|
       .comment_form
@@ -25,3 +17,5 @@
             = image_tag 'comment.png'
             = f.submit
           = f.text_area :content, class: 'comment_text-area'
+
+= javascript_pack_tag 'article'

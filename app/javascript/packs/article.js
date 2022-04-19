@@ -23,3 +23,31 @@ document.addEventListener('DOMContentLoaded', () => {
     listenActiveHeartEvent(articleId)
     })
 })
+
+const appendComment = (comment) => {
+    $('.comments-container').append(
+      `<div class="comment">
+         <div class="comment_img"><img src="${comment.user.avatar_comment_image}"></div>
+         <div class="comment_info">
+           <div class="comment_user_name"><p>${comment.user.name}</p></div>
+           <div class="comment_content"><p>${comment.content}</p></div>
+         </div>
+       </div>`
+      
+    )
+  }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const dataset = $('#comment-index').data()
+    const articleId = dataset.articleId
+  
+    axios.get(`/articles/${articleId}`)
+      .then((response) => {
+        const comments = response.data
+        comments.forEach((comment) => {
+          $('.comments-container').append(
+            appendComment(comment)
+          )
+        })
+      })
+  })
