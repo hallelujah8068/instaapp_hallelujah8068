@@ -27,10 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
 const appendComment = (comment) => {
     $('.comments-container').append(
       `<div class="comment">
-        <div class="comment_user"></div>
-        <div class="comment_user_name"><p>${comment.user.name}</p></div>
-      </div>
-      <div class="comment_content"><p>${comment.content}</p></div>`
+         <div class="comment_img"><img src="${comment.user.avatar_comment_image}"></div>
+         <div class="comment_info">
+           <div class="comment_user_name"><p>${comment.user.name}</p></div>
+           <div class="comment_content"><p>${comment.content}</p></div>
+         </div>
+       </div>`
+      
     )
   }
 
