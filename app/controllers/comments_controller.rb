@@ -13,17 +13,12 @@ class CommentsController < ApplicationController
         @article = Article.find(params[:article_id])
         @comment = @article.comments.build(comment_params)
         @comment.user = current_user
-
-        respond_to do |format|
           if @comment.save
-            format.html {redirect_to article_comments_path, notice:'コメントを追加しました!'}
-            format.js
+            redirect_to article_comments_path, notice:'コメントを追加しました!'
           else
-            format.html {flash.now[:error] = 'コメントを追加できませんでした'
-            render :index}
-            format.js
+            flash.now[:error] = 'コメントを追加できませんでした'
+            render :index
           end
-        end
     end
 
     private
