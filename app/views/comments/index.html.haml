@@ -10,7 +10,7 @@
     - if @comments.present?
       .comments-container
   - if user_signed_in?
-    = form_with(model: [@article, @comment], local: true) do |f|
+    = form_with(model: [@article, @comment], class: 'js-form') do |f|
       .comment_form
         .comment_form_container
           %label.comment_create-icon
