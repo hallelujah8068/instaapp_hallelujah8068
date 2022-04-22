@@ -13,12 +13,9 @@ class CommentsController < ApplicationController
         @article = Article.find(params[:article_id])
         @comment = @article.comments.build(comment_params)
         @comment.user = current_user
-          if @comment.save
-            redirect_to article_comments_path, notice:'コメントを追加しました!'
-          else
-            flash.now[:error] = 'コメントを追加できませんでした'
-            render :index
-          end
+        
+        @comment.save!
+        render json: @comment
     end
 
     private
