@@ -26,6 +26,8 @@ input, select {
     min-height: 42px;
 
     &.sm {
-      min-height: 169px;
+      min-height: 42px;
+      border: none;
+      line-height: 21px;
     }
   }
