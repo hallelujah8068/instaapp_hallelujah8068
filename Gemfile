@@ -25,6 +25,8 @@ gem 'annotate'
 gem 'better_errors'
 gem 'hamlit'
 gem 'active_model_serializers'
+gem 'devise'
+gem 'sidekiq'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -37,7 +39,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
   gem 'rubocop-rails'
-  gem 'devise'
 end
 
 group :development do
