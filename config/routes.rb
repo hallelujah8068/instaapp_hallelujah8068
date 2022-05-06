@@ -14,5 +14,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create] 
   end
 
-  resources :accounts, only: [:show, :create]
+  resources :accounts, only: [:show] do
+    resources :follows, only: [:create]
+    resources :unfollows, only: [:create]
+  end
 end

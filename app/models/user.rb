@@ -42,6 +42,14 @@ class User < ApplicationRecord
     profile || build_profile
   end
 
+  def avatar_image
+    if profile&.avatar&.attached?
+      profile.avatar
+    else
+      "default-avatar.png"
+    end
+  end
+
   def has_written?(article) #自分の記事かどうか判断
     articles.exists?(id: article.id)
   end
@@ -51,19 +59,27 @@ class User < ApplicationRecord
   end
 
   def follow!(user)
-    following_relationships.create!(following_id: user.id)
+    user_id = get_user_id(user)
+    following_relationships.create!(following_id: user_id)
+  end
+
+  def has_followed?(user)
+    following_relationships.exists?(following_id: user.id)
   end
 
   def unfollow!(user)
-    relation = following_relationships.find_by!(following_id: user.id)
+    user_id = get_user_id(user)
+    relation = following_relationships.find_by!(following_id: user_id)
     relation.destroy!
   end
 
-  def avatar_image
-    if profile&.avatar&.attached?
-      profile.avatar
+  private
+  def get_user_id(user)
+    if user.is_a?(User)
+      user.id
     else
-      "default-avatar.png"
+      user
     end
   end
+
 end

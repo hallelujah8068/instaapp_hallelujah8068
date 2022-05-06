@@ -3,7 +3,13 @@
     = link_to root_path do
       = image_tag 'back.svg', class: 'header_left'
     - if user_signed_in?
-      フォロー
+      .header_right 
+        - if current_page?(account_path(@user.id))
+          .follow_btn
+            - if current_user&.has_followed?(@user)
+              = link_to 'Unfollow',account_unfollows_path(@user), data: {method: 'post'}
+            - else
+              = link_to 'Follow',account_follows_path(@user), data: {method: 'post'}
     .profile_name
       %p.page_title= @user.name
   .profile_avatar
@@ -13,8 +19,10 @@
       %p.profile_info_num= @user.articles.count
       %p.profile_info_text 投稿
     .profile_info_followers
+      %p.profile_info_num= @user.followers.count
       %p.profile_info_text フォロワー
     .profile_info_following
+      %p.profile_info_num= @user.followings.count
       %p.profile_info_text フォロー
   - @user.articles.each do |article|
     .container
