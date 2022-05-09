@@ -17,10 +17,10 @@
       %p.profile_info_num= current_user.articles.count
       %p.profile_info_text Posts
     .profile_info_followers
-      %p.profile_info_num 44
+      %p.profile_info_num=current_user.followers.count
       %p.profile_info_text Followers
     .profile_info_following
-      %p.profile_info_num 44
+      %p.profile_info_num=current_user.followings.count
       %p.profile_info_text Following
   - current_user.articles.each do |article|
     .container
