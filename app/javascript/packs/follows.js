@@ -20,15 +20,23 @@ const handleFollowDisplay = (hasFollowed) => {
     axios.get(`/accounts/${accountId}.json`)
       .then((response) => {
         const hasFollowed = response.data.hasFollowed
+        const follower = response.data.follower
+        const following = response.data.following
+        $('.profile_follower_num').text(follower)
+        $('.profile_following_num').text(following)
         handleFollowDisplay(hasFollowed)
       })
   
     $('.follow').on('click', () => {
       axios.post(`/accounts/${accountId}/follows`)
         .then((response) => {
+          const follower = response.data.follower
+          const following = response.data.following
           if (response.data.status === 'ok'){
             $('.unfollow').removeClass('hidden')
             $('.follow').addClass('hidden')
+            $('.profile_follower_num').text(follower)
+            $('.profile_following_num').text(following)
           }
         })
         .catch((e) => {
@@ -40,9 +48,13 @@ const handleFollowDisplay = (hasFollowed) => {
     $('.unfollow').on('click', () => {
       axios.post(`/accounts/${accountId}/unfollows`)
         .then((response) => {
+          const follower = response.data.follower
+          const following = response.data.following
           if (response.data.status === 'ok'){
             $('.follow').removeClass('hidden')
             $('.unfollow').addClass('hidden')
+            $('.profile_follower_num').text(follower)
+            $('.profile_following_num').text(following)
           }
         })
         .catch((e) => {

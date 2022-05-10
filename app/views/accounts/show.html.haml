@@ -19,11 +19,11 @@
       %p.profile_info_num= @user.articles.count
       %p.profile_info_text 投稿
     .profile_info_followers
-      %p.profile_info_num= @user.followers.count
+      %p.profile_follower_num
       %p.profile_info_text フォロワー
     .profile_info_following
-      %p.profile_info_num= @user.followings.count
-      %p.profile_info_text フォロー
+      %p.profile_following_num
+      %p.profile_info_text フォロー中
   - @user.articles.each do |article|
     .container
       .article
