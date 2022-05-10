@@ -23,7 +23,7 @@
     &_avatar {
         text-align: center;
         margin-top: 35px;
-        margin-bottom: 45px;
+        margin-bottom: 10px;
     }
 
     &_image {
@@ -41,6 +41,7 @@
         font-size: 14px;
         margin: 0px;
         margin-bottom: 45px;
+        margin-top: 45px;
 
         &_num {
             justify-content: space-around;
@@ -94,5 +95,8 @@
             }
         }
     }
+}
 
+.avatar-select {
+    margin-left: 10px;
 }
