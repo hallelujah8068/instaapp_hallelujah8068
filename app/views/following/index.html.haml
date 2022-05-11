@@ -1,0 +1,10 @@
+.container
+  .followers_index フォロー中のユーザー
+  = link_to :back do
+    = image_tag 'back.svg', class: 'back_btn'
+  - @users.each do |user|
+    .follow
+      .follow_user
+        = image_tag user.avatar_image
+      .follow_user_name 
+        = user.name

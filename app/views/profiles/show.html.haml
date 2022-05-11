@@ -17,10 +17,12 @@
       %p.profile_info_num= current_user.articles.count
       %p.profile_info_text 投稿
     .profile_info_followers
-      %p.profile_info_num=current_user.followers.count
+      = link_to profile_follower_index_path do
+        %p.profile_info_num=current_user.followers.count
       %p.profile_info_text フォロワー
     .profile_info_following
-      %p.profile_info_num=current_user.followings.count
+      = link_to profile_following_index_path do
+        %p.profile_info_num=current_user.followings.count
       %p.profile_info_text フォロー中
   - current_user.articles.each do |article|
     .container
