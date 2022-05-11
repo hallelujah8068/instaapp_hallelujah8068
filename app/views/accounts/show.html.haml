@@ -18,11 +18,13 @@
     .profile_info_posts
       %p.profile_info_num= @user.articles.count
       %p.profile_info_text 投稿
-    .profile_info_followers
-      %p.profile_follower_num
+    = link_to account_followers_path(account_id: @user.id) do
+      .profile_info_followers
+        %p.profile_follower_num
       %p.profile_info_text フォロワー
-    .profile_info_following
-      %p.profile_following_num
+    = link_to account_followings_path(account_id: @user.id) do
+      .profile_info_following
+        %p.profile_following_num
       %p.profile_info_text フォロー中
   - @user.articles.each do |article|
     .container
