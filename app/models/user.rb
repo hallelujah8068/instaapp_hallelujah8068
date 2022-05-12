@@ -23,7 +23,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
+
   validates :name, uniqueness: true
 
   has_one :profile, dependent: :destroy
@@ -35,7 +35,7 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :followings, through: :following_relationships, source: :following
 
-  has_many :follower_relationships, foreign_key: "following_id", class_name: 'Relationship', dependent: :destroy
+  has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
 
   def prepare_profile
@@ -46,7 +46,7 @@ class User < ApplicationRecord
     if profile&.avatar&.attached?
       profile.avatar
     else
-      "default-avatar.png"
+      'default-avatar.png'
     end
   end
 

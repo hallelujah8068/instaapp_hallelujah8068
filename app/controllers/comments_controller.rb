@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
         @article = Article.find(params[:article_id])
         @comment = @article.comments.build(comment_params)
         @comment.user = current_user
-        
+
         @comment.save!
         render json: @comment
     end

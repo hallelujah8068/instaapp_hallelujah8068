@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
             format.html
             format.json { render json: { hasFollowed: follow_status, follower: follower, following: following } }
         end
-        
+
         if @user == current_user
             redirect_to  profile_path
         end

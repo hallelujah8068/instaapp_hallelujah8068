@@ -4,5 +4,5 @@ class FollowerController < ApplicationController
     def index
         @users = current_user.followers
     end
-    
+
 end
