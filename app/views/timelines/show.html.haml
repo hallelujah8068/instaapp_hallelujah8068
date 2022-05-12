@@ -1,0 +1,40 @@
+.header
+  .header_action
+    = link_to new_article_path do
+      = image_tag 'camera.png', class: 'header_icon'
+  .header-left 
+    = link_to root_path do
+      = image_tag 'back.svg', class: 'header_left'
+- @articles.each do |article|
+  .container
+    .article
+      .article_nav
+        = link_to account_path(article.user) do
+          = image_tag article.user.avatar_image, class: 'article_nav_avatar'
+        .article_nav_text
+          .article_nav_text_name
+            %p= article.user.name
+          .article_nav_text_time
+            %p= article.display_created_at
+      .article_content
+        - article.images.each do |images| 
+          = image_tag images, class: 'article_content_image'
+      .article_action
+        - if user_signed_in?
+          .article_heart.active-heart.hidden{:id => article.id}
+            = image_tag 'heart-active.png', class: 'article_icon'
+          .article_heart.inactive-heart.hidden{:id => article.id}
+            = image_tag 'heart.png', class: 'article_icon'
+          - if current_user.has_written?(article)
+            = link_to article_path(article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか？' } do
+              = image_tag 'trash.png', class: 'article_icon'
+        = link_to article_comments_path(article) do
+          = image_tag 'comment.png', class: 'article_icon'
+        = image_tag 'share.png', class: 'article_icon'
+      .article_text
+        .article_user_name
+          %p= article.user.name 
+        .article_text_content
+          %p= article.content
+
+= javascript_pack_tag 'article'
