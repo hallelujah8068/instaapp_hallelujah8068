@@ -1,7 +1,7 @@
 .profile.container
   .header
     .profile_back
-      = link_to root_path do
+      = link_to :back do
         = image_tag 'back.svg', class: 'header_left'
     .profile_name
       %p= current_user.name
@@ -47,7 +47,8 @@
             - if current_user.has_written?(article)
               = link_to article_path(article), data: { method: 'delete', confirm: '本当に削除してもよろしいですか？' } do
                 = image_tag 'trash.png', class: 'article_icon'
-          = image_tag 'comment.png', class: 'article_icon'
+          = link_to article_comments_path(article) do
+            = image_tag 'comment.png', class: 'article_icon'
           = image_tag 'share.png', class: 'article_icon share-twitter'
         .article_text
           .article_user_name
