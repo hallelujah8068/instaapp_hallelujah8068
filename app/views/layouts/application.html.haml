@@ -11,7 +11,8 @@
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
   %body
     .header
-      .header-title InstaApp 
+      = link_to root_path do
+        .header-title InstaApp 
     - if flash.present?
       .flash
         - flash.each do |key, value|
