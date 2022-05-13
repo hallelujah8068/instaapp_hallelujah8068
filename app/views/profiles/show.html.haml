@@ -1,7 +1,7 @@
 .profile.container
   .header
     .profile_back
-      = link_to root_path do
+      = link_to :back do
         = image_tag 'back.svg', class: 'header_left'
     .profile_name
       %p= current_user.name

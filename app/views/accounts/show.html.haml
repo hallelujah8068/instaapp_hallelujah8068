@@ -1,6 +1,6 @@
 .profile.container
   .header
-    = link_to root_path do
+    = link_to :back do
       = image_tag 'back.svg', class: 'header_left'
     - if user_signed_in?
       .header_right#accounts-show{data: {id: @user.id}}
