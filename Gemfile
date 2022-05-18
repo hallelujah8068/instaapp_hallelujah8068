@@ -27,6 +27,7 @@ gem 'better_errors'
 gem 'devise'
 gem 'hamlit'
 gem 'sidekiq'
+gem 'faker'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
