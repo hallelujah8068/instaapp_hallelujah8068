@@ -104,6 +104,11 @@ GEM
       html2haml
     erubi (1.10.0)
     erubis (2.7.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -323,6 +328,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise
   erb2haml
+  factory_bot_rails
   hamlit
   jbuilder (~> 2.7)
   letter_opener
