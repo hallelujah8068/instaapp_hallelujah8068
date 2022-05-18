@@ -19,8 +19,8 @@ class Article < ApplicationRecord
 
     belongs_to :user
 
-    validates :images, presence: true
-    validates :content, presence: true
+    # validates :images, presence: true
+    # validates :content, presence: true
 
     validate :image_length
 
