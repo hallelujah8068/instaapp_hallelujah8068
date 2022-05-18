@@ -22,7 +22,16 @@ class Article < ApplicationRecord
     validates :images, presence: true
     validates :content, presence: true
 
+    validate :image_length
+
     def display_created_at
         I18n.l(self.created_at, format: :long)
     end
+
+    def image_length
+        if images.length > 5
+            images = nil
+            errors.add(:images, 'は5枚以内にしてください')
+        end
+     end
 end
