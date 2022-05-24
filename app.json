@@ -1,0 +1,17 @@
+{
+    "name": "Insta app",
+    "description": "This is Insta sns",
+    "keywords": [],
+    "website": "",
+    "repository": "https://github.com/hallelujah8068/instaapp_hallelujah8068",
+    "env": {},
+    "addons": [
+        "heroku-postgresql:hobby-dev"
+    ],
+    "stack": "heroku-18",
+    "buildpacks": [{
+        "url": "heroku/nodejs"
+    }, {
+        "url": "heroku/ruby"
+    }]
+}
